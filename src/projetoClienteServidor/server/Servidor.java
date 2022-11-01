@@ -13,14 +13,15 @@ public class Servidor {
 				Thread.sleep(3000);
 
 				while (true) {
-					Socket cliente = servidor.accept();
-					System.out.println(
-							"Cliente conectado na porta: " + cliente.getPort() + ", com o IP: " + cliente.getInetAddress());
-					InputStreamReader fluxoDeDados = new InputStreamReader(cliente.getInputStream());
-					BufferedReader dado = new BufferedReader(fluxoDeDados);
-
-					System.out.println(dado.readLine());
-					cliente.close();
+					new AtendeCliente(servidor.accept()).start();
+//					Socket cliente = servidor.accept();
+//					System.out.println(
+//							"Cliente conectado na porta: " + cliente.getPort() + ", com o IP: " + cliente.getInetAddress());
+//					InputStreamReader fluxoDeDados = new InputStreamReader(cliente.getInputStream());
+//					BufferedReader dado = new BufferedReader(fluxoDeDados);
+//
+//					System.out.println(dado.readLine());
+//					cliente.close();
 				}
 			}
 		} catch (Exception e) {
